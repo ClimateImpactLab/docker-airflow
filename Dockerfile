@@ -34,6 +34,7 @@ RUN set -ex \
         libblas-dev \
         liblapack-dev \
         libpq-dev \
+        librabbitmq-dev\
     ' \
     && echo "deb http://http.debian.net/debian jessie-backports main" >/etc/apt/sources.list.d/backports.list \
     && apt-get update -yqq \
@@ -55,8 +56,8 @@ RUN set -ex \
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
-    && pip install airflow[crypto,celery,postgres,hive,hdfs,jdbc]==$AIRFLOW_VERSION \
-    && pip install celery[redis]==3.1.17 \
+    && pip install airflow[crypto,celery,all_dbs,s3,hive,hdfs,jdbc,rabbitmq,slack]==$AIRFLOW_VERSION \
+    && pip install celery[redis,librabbitmq,sqlalchemy,auth]==3.1.17 \
     && apt-get remove --purge -yqq $buildDeps \
     && apt-get clean \
     && rm -rf \
