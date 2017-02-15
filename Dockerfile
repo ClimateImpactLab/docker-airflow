@@ -23,6 +23,10 @@ ENV LC_CTYPE en_US.UTF-8
 ENV LC_MESSAGES en_US.UTF-8
 ENV LC_ALL  en_US.UTF-8
 
+#Some stuff we need for OSDC
+ENV http_proxy=http://cloud-proxy:3128
+ENV https_proxy=http://cloud-proxy:3128
+
 RUN set -ex \
     && buildDeps=' \
         python-dev \
