@@ -37,29 +37,29 @@ RUN set -ex \
         librabbitmq-dev\
     ' \
     && echo "deb http://http.debian.net/debian jessie-backports main" >/etc/apt/sources.list.d/backports.list \
-    && sudo apt-get update -yqq \
-    && sudo apt-get install -yqq --no-install-recommends \
+    && apt-get update -yqq \
+    && apt-get install -yqq --no-install-recommends \
         $buildDeps \
         python-pip \
         apt-utils \
         curl \
         netcat \
         locales \
-    && sudo apt-get install -yqq -t jessie-backports python-requests \
+    && apt-get install -yqq -t jessie-backports python-requests \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow \
     && python -m pip install -U pip \
-    && sudo pip install Cython \
-    && sudo pip install pytz==2015.7 \
-    && sudo pip install pyOpenSSL \
-    && sudo pip install ndg-httpsclient \
-    && sudo pip install pyasn1 \
-    && sudo pip install airflow[crypto,celery,all_dbs,s3,hive,hdfs,jdbc,rabbitmq,slack]==$AIRFLOW_VERSION \
-    && sudo pip install celery[redis,librabbitmq,sqlalchemy,auth]==3.1.17 \
-    && sudo apt-get remove --purge -yqq $buildDeps \
-    && sudo apt-get clean \
+    && pip install Cython \
+    && pip install pytz==2015.7 \
+    && pip install pyOpenSSL \
+    && pip install ndg-httpsclient \
+    && pip install pyasn1 \
+    && pip install airflow[crypto,celery,all_dbs,s3,hive,hdfs,jdbc,rabbitmq,slack]==$AIRFLOW_VERSION \
+    && pip install celery[redis,librabbitmq,sqlalchemy,auth]==3.1.17 \
+    && apt-get remove --purge -yqq $buildDeps \
+    && apt-get clean \
     && rm -rf \
         /var/lib/apt/lists/* \
         /tmp/* \
