@@ -24,8 +24,8 @@ ENV LC_MESSAGES en_US.UTF-8
 ENV LC_ALL  en_US.UTF-8
 
 #Some stuff we need for OSDC
-ENV http_proxy=http://cloud-proxy:3128
-ENV https_proxy=http://cloud-proxy:3128
+#ENV http_proxy=http://cloud-proxy:3128
+#ENV https_proxy=http://cloud-proxy:3128
 
 RUN set -ex \
     && buildDeps=' \
@@ -40,7 +40,6 @@ RUN set -ex \
         libpq-dev \
         librabbitmq-dev\
     ' \
-    && apt-get update -yqq && apt-get install -yqq apt-transport-https \
     && echo "deb http://http.debian.net/debian jessie-backports main" >/etc/apt/sources.list.d/backports.list \
     && apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends \
