@@ -21,7 +21,7 @@ services:
             - FERNET_KEY=9IoTgQ_EJ0hCsamBU3Mctc7F9OkODnndOKCwkwXCAA
             - EXECUTOR=Celery
         volumes:
-            - /home/mdelgado/airflow-dev/dags:/usr/local/airflow/dags
+            - ~/airflow/dags:/usr/local/airflow/dags
         ports:
             - "8080:8080"
         command: webserver
@@ -43,7 +43,7 @@ services:
         depends_on:
             - webserver
         volumes:
-            - /home/mdelgado/airflow-dev/dags:/usr/local/airflow/dags
+            - ~/airflow/dags:/usr/local/airflow/dags
         environment:
             - LOAD_EX=n
             - FERNET_KEY=9IoTgQ_EJ0hCsamBU3Mctc7F9OkODnndOKCwkwXCAA
@@ -56,7 +56,7 @@ services:
         depends_on:
             - scheduler
         volumes:
-            - /localpath/to/dags:/usr/local/airflow/dags
+            - ~/airflow/dags:/usr/local/airflow/dags
         environment:
             - FERNET_KEY=9IoTgQ_EJ0hCsamBU3Mctc7F9OkODnndOKCwkwXCAA
             - EXECUTOR=Celery
